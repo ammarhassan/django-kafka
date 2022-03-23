@@ -1,11 +1,11 @@
-FROM python:3.9-alpine
+FROM python:3.9
 
 WORKDIR /code
 
 COPY requirements.txt ./
 
 RUN pip install --upgrade pip
-RUN apk update && apk add libpq-dev gcc musl-dev
+RUN apt-get update && apt-get -y install gcc librdkafka-dev
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
